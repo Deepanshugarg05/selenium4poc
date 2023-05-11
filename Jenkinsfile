@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Selenium HUB up') {
       steps {
-        sh 'docker compose -f docker-compose-v3-seleniumgrid.yml up -  '
+        sh 'docker-compose -f docker-compose-v3-seleniumgrid.yml up -d  '
       }
     }
 
