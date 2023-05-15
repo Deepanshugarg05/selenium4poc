@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Selenium HUB up') {
       steps {
-        sh 'step([$class: \'DockerComposeBuilder\', dockerComposeFile: \'docker-compose-v3-seleniumgrid.yml\', option: [$class: \'StartAllServices\'], useCustomDockerComposeFile: true])'
+        sh 'docker-compose -f docker-compose-v3-seleniumgrid.yml up -d'
       }
     }
 
