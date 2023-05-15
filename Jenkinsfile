@@ -7,11 +7,5 @@ pipeline {
       }
     }
 
-    stage('Selnium Hub Down') {
-      steps {
-        sh 'docker compose -f docker-compose-v3-seleniumgrid.yml down'
-      }
-    }
-
   }
 }
