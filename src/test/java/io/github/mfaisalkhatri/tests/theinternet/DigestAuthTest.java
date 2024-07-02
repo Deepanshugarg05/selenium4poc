@@ -1,31 +1,28 @@
 package io.github.mfaisalkhatri.tests.theinternet;
 
-import io.github.mfaisalkhatri.pages.theinternet.DataTablesPage;
 import io.github.mfaisalkhatri.pages.theinternet.MainPage;
 import io.github.mfaisalkhatri.tests.base.BaseSuiteSetup;
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static io.github.mfaisalkhatri.drivers.DriverManager.getDriver;
 import static org.testng.Assert.assertEquals;
 
-public class DataTableTests extends BaseSuiteSetup {
+public class DigestAuthTest extends BaseSuiteSetup {
 
     @BeforeClass
-    public void testSetup () {
+    public void testSetup() {
         final String websiteLink = "http://the-internet.herokuapp.com/";
         getDriver().get(websiteLink);
         final MainPage mainPage = new MainPage();
-        mainPage.clickLink("Sortable Data Tables");
+        mainPage.clickLink("Basic Auth");
     }
 
     @Test
-    public void testDataTable () {
-        final DataTablesPage dataTablesPage = new DataTablesPage();
-        dataTablesPage.printTableRecords();
-        assertEquals(dataTablesPage.getTableData().get(0).get("Last Name"), "Smith");
-        assertEquals(dataTablesPage.getTableData().get(1).get("First Name"), "Frank");
-
+    public void testAuthentication() {
+        getDriver().get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+        final String successMessageText = getDriver().findElement(By.cssSelector(".example p")).getText();
+        assertEquals(successMessageText, "Congratulations! You must have the proper credentials.");
     }
-
 }
